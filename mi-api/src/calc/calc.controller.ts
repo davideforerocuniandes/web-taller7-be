@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, UseGuards, HttpStatus, HttpCode } from '@nestjs/common';
 import { ApiKeyGuard } from '../auth/api-key.guard';
 import { CalcService } from './calc.service';
 import { CircleQueryDto } from './dto/circle-query.dto';
@@ -15,6 +15,7 @@ export class CalcController {
 
   @Post('kinematics')
   @UseGuards(ApiKeyGuard)
+  @HttpCode(HttpStatus.OK)
   kinematics(@Body() dto: KinematicsDto) {
     return this.calc.kinematics(dto);
   }

@@ -4,6 +4,6 @@ import { Type } from 'class-transformer';
 export class CircleQueryDto {
   @Type(() => Number) // string → number (query params)
   @IsNumber()
-  @Min(0)
+  @Min(0.01)
   radius: number;
 }

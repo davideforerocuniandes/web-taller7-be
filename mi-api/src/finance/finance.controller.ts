@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, HttpStatus, HttpCode } from '@nestjs/common';
 import { ApiKeyGuard } from '../auth/api-key.guard';
 import { FinanceService } from './finance.service';
 import { CompoundDto } from './dto/compound.dto';
@@ -9,6 +9,7 @@ export class FinanceController {
 
   @Post('compound')
   @UseGuards(ApiKeyGuard)
+  @HttpCode(HttpStatus.OK)
   compound(@Body() dto: CompoundDto) {
     return this.finance.compound(dto);
   }
